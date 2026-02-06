@@ -28,13 +28,13 @@ export const Button = ({
   const buttonClasses = `${bgColor} text-white px-4 py-2 rounded transition-colors ${className}`;
 
   return html`
-    <a
+    <button
       class=${buttonClasses}
       onClick=${onClick}
       ...${rest}
     >
       ${children}
-    </a>
+    </button>
   `;
 };
 

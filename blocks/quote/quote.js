@@ -16,7 +16,7 @@ export default function decorate(block) {
     html`
       <${Paragraph}
         text=${blockquote.textContent}
-        buttonLabel="Soy un link"
+        buttonLabel="Haz clic aquí"
         onClick=${() => console.log('Click!')}
         textVariant="body"
         buttonType="red"
