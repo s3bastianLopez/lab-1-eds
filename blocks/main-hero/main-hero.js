@@ -3,7 +3,7 @@
 
 import { h, render } from 'preact';
 import htm from 'htm';
-import Paragraph from '../../uikit/molecules/paragraph/paragraph.js';
+import Block from '../../uikit/molecules/block/block.js';
 
 const html = htm.bind(h);
 
@@ -84,7 +84,7 @@ export default function decorate(block) {
 
   render(
     html`
-      <${Paragraph}
+      <${Block}
         text=${ctaText}
         buttonLabel="Haz clic aquí"
         onClick=${() => console.log('Click!')}
