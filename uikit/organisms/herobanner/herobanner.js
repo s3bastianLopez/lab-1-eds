@@ -44,11 +44,6 @@ export default function HeroBanner({
       class=${`flex items-center min-h-[320px] mb-8 ${isVariantB ? 'flex-row-reverse' : 'flex-row'} ${className}`}
       ...${rest}
     >
-      <img
-        src=${image}
-        alt=${title}
-        class="w-1/2 object-cover"
-      />
       <div class=${`w-1/2 p-8 ${isVariantB ? 'text-right' : 'text-left'}`}
       >
         <${OverlayText} text=${title} className="text-3xl font-bold mb-2" />
