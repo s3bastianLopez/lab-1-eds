@@ -15,7 +15,6 @@ export default function decorate(block) {
   // En EDS, "Hero (Variant B)" se convierte en class="hero variant-b"
   const isVariantB = block.classList.contains('variant-b');
   const variant = isVariantB ? 'B' : 'A';
-  
   // Detectar variante de botón desde clases del bloque
   // "Hero (Outline)" se convierte en class="hero outline"
   let buttonVariant = 'primary';
