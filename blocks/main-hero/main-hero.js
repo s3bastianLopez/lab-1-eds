@@ -49,6 +49,9 @@ export default function decorate(block) {
     }
   };
 
+  // Limpiar completamente el contenido del bloque antes de renderizar
+  block.innerHTML = '';
+
   // Renderizar HeroBanner con Preact
   render(
     html`<${HeroBanner}
