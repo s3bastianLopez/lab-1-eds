@@ -35,18 +35,17 @@ export default function HeroBanner({
   return html`
     <div>
       <div>
-          <div>
-            <picture>
-              <img src=${image} alt=${title} data-aue-prop="image" data-aue-label="Image" data-aue-type="media">
-            </picture>
-          </div>
+        <div>
+          <picture>
+            <img src=${image} alt=${title} data-aue-prop="image" data-aue-label="Image" data-aue-type="media">
+          </picture>
+        </div>
       </div>
       <div
         class=${`flex items-center min-h-[320px] mb-8 ${isVariantB ? 'flex-row-reverse' : 'flex-row'} ${className}`}
         ...${rest}
       >
-        <div class=${`w-1/2 p-8 ${isVariantB ? 'text-right' : 'text-left'}`}
-        >
+        <div class=${`w-1/2 p-8 ${isVariantB ? 'text-right' : 'text-left'}`}>
           <${OverlayText} text=${title} className="text-3xl font-bold mb-2" />
           <${Button} label=${buttonLabel} variant=${buttonVariant} onClick=${onButtonClick} />
           ${children}
