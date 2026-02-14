@@ -41,7 +41,7 @@ export default function decorate(block) {
   }
 
   // Extraer datos del DOM antes de reemplazar
-  const imageElement = block.querySelector('img');
+  const imageElement = block.querySelector('picture');
   const titleElement = block.querySelector('[data-aue-prop="title"]');
   const action = block.querySelector('[data-aue-prop="action"]')?.textContent || '';
   const buttonHref = action || '#';
