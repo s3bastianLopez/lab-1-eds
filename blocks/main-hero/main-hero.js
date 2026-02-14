@@ -10,33 +10,29 @@ const html = htm.bind(h);
  * @param {HTMLElement} block
  */
 export default function decorate(block) {
-  // Buscar el elemento que contiene los valores de style
-  const styleElement = block.querySelector('[data-aue-prop="style"]');
+  // Buscar el elemento que contiene el valor de linkType
+  const linkTypeElement = block.querySelector('[data-aue-prop="linkType"]');
 
-  // Parsear variantes desde el campo style
+  // Parsear variantes desde los campos
   let variant = 'A';
-  let buttonVariant = 'primary';
 
-  if (styleElement) {
-    const styleValues = styleElement.textContent?.trim().split(',').map((v) => v.trim()).filter((v) => v);
+  if (linkTypeElement) {
+    const linkTypeValue = linkTypeElement.textContent?.trim();
 
-    // Aplicar cada valor como clase al bloque
-    styleValues?.forEach((styleClass) => {
-      if (styleClass) {
-        block.classList.add(styleClass);
+    // Mapear valores de linkType a variantes
+    if (linkTypeValue === 'text-right') {
+      variant = 'B';
+      block.classList.add('variant-b');
+    } else {
+      variant = 'A';
+      block.classList.add('variant-a');
+    }
 
-        // Detectar variante de layout
-        if (styleClass === 'variant-b') {
-          variant = 'B';
-        }
-        // Detectar variante de botón
-        if (styleClass === 'button-outline') {
-          buttonVariant = 'outline';
-        } else if (styleClass === 'button-secondary') {
-          buttonVariant = 'secondary';
-        }
-      }
-    });
+    // Ocultar el elemento linkType
+    const parentRow = linkTypeElement.closest('.main-hero > div');
+    if (parentRow) {
+      parentRow.remove();
+    }
   }
 
   // Extraer datos del DOM antes de reemplazar
@@ -59,9 +55,7 @@ export default function decorate(block) {
       variant=${variant}
       image=${image}
       title=${title}
-      description=""
       buttonLabel=${action || 'Learn More'}
-      buttonVariant=${buttonVariant}
       onButtonClick=${handleClick}
     />`,
     block,

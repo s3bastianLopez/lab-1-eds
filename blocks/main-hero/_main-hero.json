@@ -51,14 +51,14 @@
         {
           "component": "select",
           "name": "linkType",
-          "label": "Type",
+          "label": "Text Position",
           "options": [
             {
-              "name": "default",
+              "name": "Text Left",
               "value": "text-left"
             },
             {
-              "name": "text right",
+              "name": "Text Right",
               "value": "text-right"
             }
           ]
