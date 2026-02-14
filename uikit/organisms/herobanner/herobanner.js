@@ -37,8 +37,14 @@ export default function HeroBanner({
       class=${`flex items-center min-h-[320px] mb-8 ${isVariantB ? 'flex-row-reverse' : 'flex-row'} ${className}`}
       ...${rest}
     >
+      <div>
+        <div>
+          <picture>
+            ${imageElement ? html`${imageElement.outerHTML}` : null}
+          </picture>
+        </div>
+      </div>
       <div
-        class="w-1/2"
         dangerouslySetInnerHTML=${{ __html: imageElement?.outerHTML || '' }}
       />
       <div class=${`w-1/2 p-8 ${isVariantB ? 'text-right' : 'text-left'}`}
