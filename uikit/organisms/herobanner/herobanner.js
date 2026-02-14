@@ -33,17 +33,21 @@ export default function HeroBanner({
 }) {
   const isVariantB = variant === 'B';
   return html`
-    <section>
-      <img src=${image} alt=${title} data-aue-prop="image" data-aue-label="Image" data-aue-type="media" />
-      <div
+    <div
       class=${`flex items-center min-h-[320px] mb-8 ${isVariantB ? 'flex-row-reverse' : 'flex-row'} ${className}`}
       ...${rest}
+    >
+      <img
+        src=${image}
+        alt=${title}
+        class="w-1/2 object-cover"
+      />
+      <div class=${`w-1/2 p-8 ${isVariantB ? 'text-right' : 'text-left'}`}
       >
-        <div class=${`w-1/2 p-8 ${isVariantB ? 'text-right' : 'text-left'}`}>
-          <${OverlayText} text=${title} className="text-3xl font-bold mb-2" />
-          <${Button} label=${buttonLabel} variant=${buttonVariant} onClick=${onButtonClick} />
-        </div>
+        <${OverlayText} text=${title} className="text-3xl font-bold mb-2" />
+        <${Button} label=${buttonLabel} variant=${buttonVariant} onClick=${onButtonClick} />
+        ${children}
       </div>
-    </section>
+    </div>
   `;
 }
