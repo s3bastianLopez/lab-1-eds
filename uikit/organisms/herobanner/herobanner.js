@@ -13,7 +13,6 @@ const html = htm.bind(h);
  * @param {string} [props.variant] - 'A' | 'B'
  * @param {string} [props.image]
  * @param {string} [props.title]
- * @param {string} [props.description]
  * @param {string} [props.buttonLabel]
  * @param {string} [props.buttonVariant]
  * @param {Function} [props.onButtonClick]
@@ -25,7 +24,6 @@ export default function HeroBanner({
   variant = 'A',
   image,
   title,
-  description,
   buttonLabel,
   buttonVariant = 'primary',
   onButtonClick,
@@ -47,7 +45,6 @@ export default function HeroBanner({
       <div class=${`w-1/2 p-8 ${isVariantB ? 'text-right' : 'text-left'}`}
       >
         <${OverlayText} text=${title} className="text-3xl font-bold mb-2" />
-        <p class="mb-4">${description}</p>
         <${Button} label=${buttonLabel} variant=${buttonVariant} onClick=${onButtonClick} />
         ${children}
       </div>

@@ -1,34 +1,20 @@
 /**
  * Decorador de bloque main-hero para EDS con soporte de variantes
  * Mantiene la estructura DOM original y aplica clases CSS según variantes
+ * Lee variantes como atributos anidados de title y action
  * @param {HTMLElement} block
  */
 export default function decorate(block) {
-  const rows = [...block.children];
+  // Leer variantes desde data attributes anidados de title y action
+  const titleElement = block.querySelector('[data-aue-prop="title"]');
+  const actionElement = block.querySelector('[data-aue-prop="action"]');
 
-  // Leer variantes desde los campos del modelo (si existen en el DOM)
-  let variant = 'A';
-  let buttonVariant = 'primary';
+  // Buscar variantes anidadas (titleVariant, actionButtonVariant)
+  const titleVariantElement = block.querySelector('[data-aue-prop="titleVariant"]');
+  const buttonVariantElement = block.querySelector('[data-aue-prop="actionButtonVariant"]');
 
-  // Buscar en todas las filas los campos de variante
-  rows.forEach((row) => {
-    const cells = [...row.children];
-    cells.forEach((cell) => {
-      const text = cell.textContent?.trim().toLowerCase();
-      // Detectar variante A o B
-      if (text === 'a' || text === 'b') {
-        variant = text.toUpperCase();
-        // Ocultar la celda que contiene solo la variante
-        cell.style.display = 'none';
-      }
-      // Detectar variante de botón
-      if (text === 'primary' || text === 'outline' || text === 'secondary') {
-        buttonVariant = text;
-        // Ocultar la celda que contiene solo la variante de botón
-        cell.style.display = 'none';
-      }
-    });
-  });
+  let variant = titleVariantElement?.textContent?.trim().toUpperCase() || 'A';
+  let buttonVariant = buttonVariantElement?.textContent?.trim().toLowerCase() || 'primary';
 
   // Fallback: detectar desde clases CSS si no se encuentran en el DOM
   if (block.classList.contains('variant-b')) {
