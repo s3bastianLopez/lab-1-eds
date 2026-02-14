@@ -39,7 +39,7 @@ export default function HeroBanner({
     >
       <div>
       <picture>
-        <div
+        <img
           dangerouslySetInnerHTML=${{ __html: imageElement?.outerHTML || '' }}
         />
       </picture></div>
