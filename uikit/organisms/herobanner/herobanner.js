@@ -33,7 +33,7 @@ export default function HeroBanner({
 }) {
   const isVariantB = variant === 'B';
   return html`
-    <div>
+    <section>
       <div>
         <div>
           <picture>
@@ -50,6 +50,6 @@ export default function HeroBanner({
           <${Button} label=${buttonLabel} variant=${buttonVariant} onClick=${onButtonClick} />
         </div>
       </div>
-    </div>
+    </section>
   `;
 }
