@@ -31,14 +31,18 @@ export default function HeroBanner({
   children,
 }) {
   return html`
-    <img
-    src=${image}
-    alt=${title}
-    class="w-1/2 object-cover"
-    />
-    <${OverlayText} text=${title} className="text-3xl font-bold mb-2" />
-    <p class="mb-4">${description}</p>
-    <${Button} label=${buttonLabel} variant=${buttonVariant} onClick=${onButtonClick} />
-    ${children}
+    <div class="flex items-center min-h-[320px] mb-8">
+      <img
+        src=${image}
+        alt=${title}
+        class="w-1/2 object-cover"
+      />
+      <div class="w-1/2 p-8">
+        <${OverlayText} text=${title} className="text-3xl font-bold mb-2" />
+        <p class="mb-4">${description}</p>
+        <${Button} label=${buttonLabel} variant=${buttonVariant} onClick=${onButtonClick} />
+        ${children}
+      </div>
+    </div>
   `;
 }
