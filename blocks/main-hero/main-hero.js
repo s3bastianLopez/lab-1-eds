@@ -15,6 +15,7 @@ export default function decorate(block) {
 
   // Parsear variantes desde los campos
   let variant = 'A';
+  let buttonVariant = 'primary';
 
   if (linkTypeElement) {
     const linkTypeValue = linkTypeElement.textContent?.trim();
@@ -22,10 +23,14 @@ export default function decorate(block) {
     // Mapear valores de linkType a variantes
     if (linkTypeValue === 'text-right') {
       variant = 'B';
+      buttonVariant = 'secondary'; // Text right usa secondary
       block.classList.add('variant-b');
+      block.classList.add('button-secondary');
     } else {
       variant = 'A';
+      buttonVariant = 'primary'; // Text left usa primary
       block.classList.add('variant-a');
+      block.classList.add('button-primary');
     }
 
     // Ocultar el elemento linkType
@@ -53,6 +58,7 @@ export default function decorate(block) {
   render(
     html`<${HeroBanner}
       variant=${variant}
+      buttonVariant=${buttonVariant}
       image=${image}
       title=${title}
       buttonLabel=${action || 'Learn More'}

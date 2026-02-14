@@ -5,10 +5,10 @@ import htm from 'htm';
 const html = htm.bind(h);
 
 /**
- * Button - Variante con soporte para primary, secondary, outline, disabled
+ * Button - Variante con soporte para primary, secondary-outline, disabled
  *
  * @param {Object} props
- * @param {string} [props.variant] - 'primary' | 'secondary' | 'outline'
+ * @param {string} [props.variant] - 'primary' | 'secondary-outline' | 'disabled'
  * @param {boolean} [props.disabled]
  * @param {Function} [props.onClick]
  * @param {string} [props.className]
@@ -27,10 +27,10 @@ export default function Button({
 }) {
   let style = '';
   switch (variant) {
-    case 'secondary':
+    case 'disabled':
       style = 'bg-gray-200 text-gray-800 border border-gray-400';
       break;
-    case 'outline':
+    case 'secondary':
       style = 'bg-transparent text-blue-600 border border-blue-600';
       break;
     case 'primary':
