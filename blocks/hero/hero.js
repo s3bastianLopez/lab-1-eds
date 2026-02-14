@@ -19,6 +19,10 @@ export default function decorate(block) {
   const buttonLabel = button?.textContent || '';
   const buttonHref = button?.href || '';
 
+  // Permitir selección de variante desde el editor EDS usando data attributes
+  const variant = block.dataset.variant || 'A';
+  const buttonVariant = block.dataset.buttonVariant || 'primary';
+
   // Definir handler fuera del template para evitar errores de parsing
   let handleClick;
   if (buttonHref) {
@@ -32,7 +36,8 @@ export default function decorate(block) {
       title=${title}
       description=${description}
       buttonLabel=${buttonLabel}
-      buttonVariant="outline"
+      variant=${variant}
+      buttonVariant=${buttonVariant}
       onButtonClick=${handleClick}
     />`,
     block,
