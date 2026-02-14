@@ -19,10 +19,6 @@ export default function decorate(block) {
   const buttonLabel = button?.textContent || '';
   const buttonHref = button?.href || '';
 
-  // Permitir selección de variante desde el editor EDS usando data attributes
-  const variant = block.dataset.variant || 'A';
-  const buttonVariant = block.dataset.buttonVariant || 'primary';
-
   // Definir handler fuera del template para evitar errores de parsing
   let handleClick;
   if (buttonHref) {
@@ -30,15 +26,13 @@ export default function decorate(block) {
   }
 
   // Renderizar HeroBanner usando Preact.render, preservando el bloque original
-  block.innerHTML = '';
   render(
     html`<${HeroBanner}
       image=${image}
       title=${title}
       description=${description}
       buttonLabel=${buttonLabel}
-      variant=${variant}
-      buttonVariant=${buttonVariant}
+      buttonVariant="outline"
       onButtonClick=${handleClick}
     />`,
     block,

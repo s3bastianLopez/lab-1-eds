@@ -22,22 +22,30 @@ const html = htm.bind(h);
  * @param {Object} [props.rest]
  */
 export default function HeroBanner({
+  variant = 'A',
   image,
   title,
   description,
   buttonLabel,
   buttonVariant = 'primary',
   onButtonClick,
+  className = '',
   children,
+  ...rest
 }) {
+  const isVariantB = variant === 'B';
   return html`
-    <div class="flex items-center min-h-[320px] mb-8">
+    <div
+      class=${`flex items-center min-h-[320px] mb-8 ${isVariantB ? 'flex-row-reverse' : 'flex-row'} ${className}`}
+      ...${rest}
+    >
       <img
         src=${image}
         alt=${title}
         class="w-1/2 object-cover"
       />
-      <div class="w-1/2 p-8">
+      <div class=${`w-1/2 p-8 ${isVariantB ? 'text-right' : 'text-left'}`}
+      >
         <${OverlayText} text=${title} className="text-3xl font-bold mb-2" />
         <p class="mb-4">${description}</p>
         <${Button} label=${buttonLabel} variant=${buttonVariant} onClick=${onButtonClick} />
