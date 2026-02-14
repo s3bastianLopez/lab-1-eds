@@ -1,67 +1,37 @@
-.main-hero {
+.hero-container .hero-wrapper {
+  max-width: unset;
+  padding: 0;
+}
+
+.hero {
   position: relative;
-  min-height: 400px;
-  overflow: hidden;
-  display: flex;
-  align-items: center;
+  padding: 40px 24px;
+  min-height: 300px;
 }
 
-/* Background */
-.main-hero .background {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 0;
-}
-
-.main-hero .background picture {
-  display: block;
-  width: 100%;
-  height: 100%;
-}
-
-.main-hero .background img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-/* Content */
-.main-hero .content {
-  position: relative;
-  z-index: 1;
-  width: 100%;
+.hero h1 {
   max-width: 1200px;
-  margin: 0 auto;
-  padding: 60px 40px;
+  margin-left: auto;
+  margin-right: auto;
+  color: var(--background-color);
 }
 
-/* Text Content */
-.main-hero .text-content {
-  background: rgb(0 0 0 / 20%);
-  backdrop-filter: blur(5px);
-  border-radius: 16px;
-  padding: 30px;
-  max-width: 450px;
-  color: white;
-  margin-bottom: 40px;
+.hero picture {
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  object-fit: cover;
+  box-sizing: border-box;
 }
 
-.main-hero .text-content .title {
-  margin-top: 0;
-  margin-bottom: 0;
-  font-size: 32px;
+.hero img {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
 }
 
-/* Buttons Content */
-.main-hero .buttons-content .button {
-  background-color: #3b63fb;
-  margin: 0;
-  transition: box-shadow 0.2s;
-}
-
-.main-hero .buttons-content .button:hover {
-  background-color: #1d3ecf;
-  box-shadow: 0 4px 12px rgb(255 255 255 / 30%);
+@media (width >= 900px) {
+  .hero {
+    padding: 40px 32px;
+  }
 }
