@@ -43,7 +43,7 @@ export default function decorate(block) {
   // Extraer datos del DOM antes de reemplazar
   const image = block.querySelector('img')?.src || '';
   const imageAlt = block.querySelector('img')?.alt || '';
-  const title = block.querySelector('[data-aue-prop="title"]')?.textContent || '';
+  const titleElement = block.querySelector('[data-aue-prop="title"]');
   const action = block.querySelector('[data-aue-prop="action"]')?.textContent || '';
   const buttonHref = action || '#';
 
@@ -63,7 +63,7 @@ export default function decorate(block) {
       variant=${variant}
       buttonVariant=${buttonVariant}
       image=${image}
-      title=${title}
+      titleElement=${titleElement}
       buttonLabel=${action || 'Learn More'}
       onButtonClick=${handleClick}
     />`,
