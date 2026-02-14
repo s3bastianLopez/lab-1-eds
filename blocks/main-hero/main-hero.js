@@ -1,12 +1,30 @@
 /**
  * Decorador de bloque main-hero para EDS con soporte de variantes
  * Mantiene la estructura DOM original y aplica estilos CSS según clases
- * Las variantes se aplican automáticamente como clases CSS desde el campo "style"
+ * Las variantes se leen desde el campo "style" y se aplican como clases
  * @param {HTMLElement} block
  */
 export default function decorate(block) {
-  // Las clases variant-b, button-outline, button-secondary ya están aplicadas
-  // automáticamente por AEM desde el campo "style" multiselect
+  // Buscar el elemento que contiene los valores de style
+  const styleElement = block.querySelector('[data-aue-prop="style"]');
+
+  if (styleElement) {
+    // Parsear los valores (vienen como "variant-b,button-outline,button-secondary")
+    const styleValues = styleElement.textContent?.trim().split(',').map((v) => v.trim()).filter((v) => v);
+
+    // Aplicar cada valor como clase al bloque
+    styleValues?.forEach((styleClass) => {
+      if (styleClass) {
+        block.classList.add(styleClass);
+      }
+    });
+
+    // Ocultar el elemento que contiene los valores de style
+    const parentRow = styleElement.closest('.main-hero > div');
+    if (parentRow) {
+      parentRow.style.display = 'none';
+    }
+  }
 
   // Determinar variante de layout (A por defecto, B si tiene variant-b)
   const isVariantB = block.classList.contains('variant-b');
@@ -24,10 +42,10 @@ export default function decorate(block) {
     block.classList.add('variant-a');
   }
 
-  // Agregar clase de botón normalizada si no es primary
-  if (buttonVariant !== 'primary') {
-    block.classList.add(`button-${buttonVariant}`);
-  } else {
+  // Agregar clase de botón normalizada
+  if (!block.classList.contains('button-primary')
+    && !block.classList.contains('button-outline')
+    && !block.classList.contains('button-secondary')) {
     block.classList.add('button-primary');
   }
 
