@@ -240,13 +240,6 @@
         "value": ""
       },
       {
-        "component": "text",
-        "valueType": "string",
-        "name": "action",
-        "label": "Action",
-        "value": ""
-      },
-      {
         "component": "select",
         "name": "linkType",
         "label": "Text Position",
