@@ -40,13 +40,13 @@ export default function HeroBanner({
       <div>
         <div>
           <picture>
-            ${imageElement ? html`${imageElement.outerHTML}` : null}
+            <div
+              dangerouslySetInnerHTML=${{ __html: imageElement?.outerHTML || '' }}
+            />
           </picture>
         </div>
       </div>
-      <div
-        dangerouslySetInnerHTML=${{ __html: imageElement?.outerHTML || '' }}
-      />
+      
       <div class=${`w-1/2 p-8 ${isVariantB ? 'text-right' : 'text-left'}`}
       >
         <${OverlayText} htmlElement=${titleElement} className="text-3xl font-bold mb-2" />
