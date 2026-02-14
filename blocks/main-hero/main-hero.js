@@ -1,97 +1,45 @@
-/* eslint-disable import/no-extraneous-dependencies */
-/* eslint-disable no-console */
+// Bloque Hero para EDS, usando el organismo HeroBanner
 
 import { h, render } from 'preact';
 import htm from 'htm';
-import Block from '../../uikit/molecules/block/block.js';
+import HeroBanner from '../../uikit/organisms/herobanner/herobanner.js';
 
 const html = htm.bind(h);
 
 /**
- * Decorate the main-hero block
- * @param {Element} block - The main-hero block element
+ * Decorador de bloque hero para EDS
+ * @param {HTMLElement} block
  */
 export default function decorate(block) {
-  // Extract content from the block structure
-  const rows = [...block.children];
+  // Extraer datos del DOM del bloque (ejemplo: imagen, título, descripción, botón)
+  const image = block.querySelector('img')?.src || '';
+  const title = block.querySelector('h1,h2,h3,h4,h5,h6')?.textContent || '';
+  const description = block.querySelector('p')?.textContent || '';
+  const button = block.querySelector('a,button');
+  const buttonLabel = button?.textContent || '';
+  const buttonHref = button?.href || '';
 
-  // Get the image (first row)
-  const imageRow = rows[0];
-  const picture = imageRow?.querySelector('picture');
+  // Permitir selección de variante desde el editor EDS usando data attributes
+  const variant = block.dataset.variant || 'A';
+  const buttonVariant = block.dataset.buttonVariant || 'primary';
 
-  // Get the title (second row)
-  const titleRow = rows[1];
-  const title = titleRow?.querySelector('h1');
-
-  // Get button text (third row)
-  const buttonRow = rows[2];
-  const ctaTextEl = buttonRow?.querySelector('div');
-  const ctaText = ctaTextEl?.textContent?.trim();
-
-  // Clear the block and rebuild structure
-  block.innerHTML = '';
-
-  // Create the background image container
-  const backgroundContainer = document.createElement('div');
-  backgroundContainer.className = 'background';
-  if (picture) {
-    backgroundContainer.appendChild(picture);
+  // Definir handler fuera del template para evitar errores de parsing
+  let handleClick;
+  if (buttonHref) {
+    handleClick = function () { window.location.href = buttonHref; };
   }
 
-  // Create the content container
-  const contentContainer = document.createElement('div');
-  contentContainer.className = 'content';
-
-  // Create the text content overlay
-  const textContentOverlay = document.createElement('div');
-  textContentOverlay.className = 'text-content';
-
-  // Add title
-  if (title) {
-    const titleElement = document.createElement('h1');
-    titleElement.className = 'title';
-    titleElement.textContent = title.textContent;
-    textContentOverlay.appendChild(titleElement);
-  }
-
-  contentContainer.appendChild(textContentOverlay);
-
-  // Add description
-  const firstParagraphElement = document.createElement('p');
-  firstParagraphElement.className = 'subtitle';
-  firstParagraphElement.textContent = 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.';
-  textContentOverlay.appendChild(firstParagraphElement);
-  const secondParagraphElement = document.createElement('p');
-  secondParagraphElement.className = 'description';
-  secondParagraphElement.textContent = 'Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s.';
-  textContentOverlay.appendChild(secondParagraphElement);
-
-  // Create the buttons content container
-  const buttonContentContainer = document.createElement('div');
-  buttonContentContainer.className = 'buttons-content';
-
-  // Add button
-  const button = document.createElement('a');
-  button.className = 'button';
-  button.href = '#';
-  button.textContent = ctaText;
-  // buttonContentContainer.appendChild(button);
-  contentContainer.appendChild(buttonContentContainer);
-
-  // Assemble the block
-  block.appendChild(backgroundContainer);
-  block.appendChild(contentContainer);
-
+  // Renderizar HeroBanner usando Preact.render, preservando el bloque original
   render(
-    html`
-      <${Block}
-        text=${ctaText}
-        buttonLabel="Haz clic aquí"
-        onClick=${() => console.log('Click!')}
-        textVariant="body"
-        buttonType="red"
-      />
-    `,
-    buttonContentContainer,
+    html`<${HeroBanner}
+      image=${image}
+      title=${title}
+      description=${description}
+      buttonLabel=${buttonLabel}
+      variant=${variant}
+      buttonVariant=${buttonVariant}
+      onButtonClick=${handleClick}
+    />`,
+    block,
   );
 }

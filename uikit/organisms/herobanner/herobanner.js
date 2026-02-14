@@ -11,6 +11,7 @@ const html = htm.bind(h);
  * HeroBanner - Organismo con variantes A/B
  * @param {Object} props
  * @param {string} [props.variant] - 'A' | 'B'
+ * @param {string} [props.image]
  * @param {string} [props.title]
  * @param {string} [props.description]
  * @param {string} [props.buttonLabel]
@@ -22,6 +23,7 @@ const html = htm.bind(h);
  */
 export default function HeroBanner({
   variant = 'A',
+  image,
   title,
   description,
   buttonLabel,
@@ -37,6 +39,11 @@ export default function HeroBanner({
       class=${`flex items-center min-h-[320px] mb-8 ${isVariantB ? 'flex-row-reverse' : 'flex-row'} ${className}`}
       ...${rest}
     >
+      <img
+        src=${image}
+        alt=${title}
+        class="w-1/2 object-cover"
+      />
       <div class=${`w-1/2 p-8 ${isVariantB ? 'text-right' : 'text-left'}`}
       >
         <${OverlayText} text=${title} className="text-3xl font-bold mb-2" />
