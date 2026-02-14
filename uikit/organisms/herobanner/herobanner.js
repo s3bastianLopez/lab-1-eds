@@ -34,7 +34,7 @@ export default function HeroBanner({
   const isVariantB = variant === 'B';
   return html`
     <section>
-      <img src=${image} alt=${title} data-aue-prop="image" data-aue-label="Image" data-aue-type="media">
+      <img src=${image} alt=${title} data-aue-prop="image" data-aue-label="Image" data-aue-type="media" />
       <div
       class=${`flex items-center min-h-[320px] mb-8 ${isVariantB ? 'flex-row-reverse' : 'flex-row'} ${className}`}
       ...${rest}
