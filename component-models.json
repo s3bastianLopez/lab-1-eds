@@ -238,6 +238,44 @@
         "value": "",
         "label": "Text",
         "valueType": "string"
+      },
+      {
+        "component": "select",
+        "name": "variant",
+        "label": "Hero Variant",
+        "valueType": "string",
+        "options": [
+          {
+            "label": "A (Texto Izquierda, Botón Sólido)",
+            "value": "A"
+          },
+          {
+            "label": "B (Texto Derecha, Botón Outline)",
+            "value": "B"
+          }
+        ],
+        "default": "A"
+      },
+      {
+        "component": "select",
+        "name": "buttonVariant",
+        "label": "Button Variant",
+        "valueType": "string",
+        "options": [
+          {
+            "label": "Primary (Sólido)",
+            "value": "primary"
+          },
+          {
+            "label": "Outline",
+            "value": "outline"
+          },
+          {
+            "label": "Secondary",
+            "value": "secondary"
+          }
+        ],
+        "default": "primary"
       }
     ]
   },
