@@ -60,6 +60,7 @@ export default function decorate(block) {
   }
 
   // Renderizar HeroBanner usando Preact.render
+  block.innerHTML = ''; // Limpiar contenido original
   render(
     html`<${HeroBanner}
       variant=${variant}
