@@ -39,37 +39,33 @@
           "valueType": "string",
           "name": "title",
           "label": "Title",
-          "value": "",
-          "variant": {
-            "component": "select",
-            "name": "titleVariant",
-            "label": "Title Position",
-            "valueType": "string",
-            "options": [
-              { "label": "Left", "value": "A" },
-              { "label": "Right", "value": "B" }
-            ],
-            "default": "A"
-          }
+          "value": ""
         },
         {
           "component": "text",
           "valueType": "string",
           "name": "action",
           "label": "Action",
-          "value": "",
-          "buttonVariant": {
-            "component": "select",
-            "name": "actionButtonVariant",
-            "label": "Button Style",
-            "valueType": "string",
-            "options": [
-              { "label": "Primary (Solid)", "value": "primary" },
-              { "label": "Outline", "value": "outline" },
-              { "label": "Secondary", "value": "secondary" }
-            ],
-            "default": "primary"
-          }
+          "value": ""
+        },
+        {
+          "component": "multiselect",
+          "name": "style",
+          "label": "Style",
+          "options": [
+            {
+              "name": "Variant B (Text Right)",
+              "value": "variant-b"
+            },
+            {
+              "name": "Button Outline",
+              "value": "button-outline"
+            },
+            {
+              "name": "Button Secondary",
+              "value": "button-secondary"
+            }
+          ]
         }
       ]
     }

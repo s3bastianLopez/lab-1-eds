@@ -1,34 +1,35 @@
 /**
  * Decorador de bloque main-hero para EDS con soporte de variantes
- * Mantiene la estructura DOM original y aplica clases CSS según variantes
- * Lee variantes como atributos anidados de title y action
+ * Mantiene la estructura DOM original y aplica estilos CSS según clases
+ * Las variantes se aplican automáticamente como clases CSS desde el campo "style"
  * @param {HTMLElement} block
  */
 export default function decorate(block) {
-  // Leer variantes desde data attributes anidados de title y action
-  const titleElement = block.querySelector('[data-aue-prop="title"]');
-  const actionElement = block.querySelector('[data-aue-prop="action"]');
+  // Las clases variant-b, button-outline, button-secondary ya están aplicadas
+  // automáticamente por AEM desde el campo "style" multiselect
 
-  // Buscar variantes anidadas (titleVariant, actionButtonVariant)
-  const titleVariantElement = block.querySelector('[data-aue-prop="titleVariant"]');
-  const buttonVariantElement = block.querySelector('[data-aue-prop="actionButtonVariant"]');
+  // Determinar variante de layout (A por defecto, B si tiene variant-b)
+  const isVariantB = block.classList.contains('variant-b');
 
-  let variant = titleVariantElement?.textContent?.trim().toUpperCase() || 'A';
-  let buttonVariant = buttonVariantElement?.textContent?.trim().toLowerCase() || 'primary';
-
-  // Fallback: detectar desde clases CSS si no se encuentran en el DOM
-  if (block.classList.contains('variant-b')) {
-    variant = 'B';
-  }
-  if (block.classList.contains('outline')) {
+  // Determinar variante de botón
+  let buttonVariant = 'primary';
+  if (block.classList.contains('button-outline')) {
     buttonVariant = 'outline';
-  } else if (block.classList.contains('secondary')) {
+  } else if (block.classList.contains('button-secondary')) {
     buttonVariant = 'secondary';
   }
 
-  // Aplicar clases CSS según las variantes detectadas
-  block.classList.add(`variant-${variant.toLowerCase()}`);
-  block.classList.add(`button-${buttonVariant}`);
+  // Agregar clase adicional para variant-a si no es variant-b
+  if (!isVariantB) {
+    block.classList.add('variant-a');
+  }
+
+  // Agregar clase de botón normalizada si no es primary
+  if (buttonVariant !== 'primary') {
+    block.classList.add(`button-${buttonVariant}`);
+  } else {
+    block.classList.add('button-primary');
+  }
 
   // Aplicar clases a elementos específicos para el estilo
   const picture = block.querySelector('picture');
@@ -36,7 +37,7 @@ export default function decorate(block) {
     picture.classList.add('main-hero-image');
   }
 
-  const textContent = block.querySelector('[data-aue-prop="text"]');
+  const textContent = block.querySelector('[data-aue-prop="title"]');
   if (textContent) {
     textContent.classList.add('main-hero-text');
   }
