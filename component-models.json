@@ -258,10 +258,6 @@
           {
             "name": "Button Outline",
             "value": "button-outline"
-          },
-          {
-            "name": "Button Secondary",
-            "value": "button-secondary"
           }
         ]
       }

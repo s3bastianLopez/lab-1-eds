@@ -19,10 +19,10 @@ export default function decorate(block) {
       }
     });
 
-    // Ocultar el elemento que contiene los valores de style
+    // Eliminar completamente el elemento que contiene los valores de style
     const parentRow = styleElement.closest('.main-hero > div');
     if (parentRow) {
-      parentRow.style.display = 'none';
+      parentRow.remove();
     }
   }
 
