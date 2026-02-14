@@ -247,17 +247,17 @@
         "value": ""
       },
       {
-        "component": "multiselect",
-        "name": "style",
-        "label": "Style",
+        "component": "select",
+        "name": "linkType",
+        "label": "Type",
         "options": [
           {
-            "name": "Variant B (Text Right)",
-            "value": "variant-b"
+            "name": "default",
+            "value": "text-left"
           },
           {
-            "name": "Button Outline",
-            "value": "button-outline"
+            "name": "text right",
+            "value": "text-right"
           }
         ]
       }
