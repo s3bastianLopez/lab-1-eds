@@ -1,5 +1,6 @@
 // Bloque Hero para EDS, usando el organismo HeroBanner
-import { h } from 'preact';
+
+import { h, render } from 'preact';
 import htm from 'htm';
 import HeroBanner from '../../uikit/organisms/herobanner/herobanner.js';
 
@@ -18,22 +19,22 @@ export default function decorate(block) {
   const buttonLabel = button?.textContent || '';
   const buttonHref = button?.href || '';
 
-  // Limpiar el contenido del bloque
-  block.innerHTML = '';
-
   // Definir handler fuera del template para evitar errores de parsing
   let handleClick;
   if (buttonHref) {
     handleClick = function () { window.location.href = buttonHref; };
   }
 
-  // Renderizar el HeroBanner con los datos extraídos
-  block.appendChild(html`<${HeroBanner}
+  // Renderizar HeroBanner usando Preact.render, preservando el bloque original
+  render(
+    html`<${HeroBanner}
       image=${image}
       title=${title}
       description=${description}
       buttonLabel=${buttonLabel}
       buttonVariant="outline"
       onButtonClick=${handleClick}
-  />`);
+    />`,
+    block,
+  );
 }
