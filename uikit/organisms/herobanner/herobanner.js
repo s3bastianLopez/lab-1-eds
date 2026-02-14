@@ -11,7 +11,7 @@ const html = htm.bind(h);
  * HeroBanner - Organismo con variantes A/B
  * @param {Object} props
  * @param {string} [props.variant] - 'A' | 'B'
- * @param {string} [props.image]
+ * @param {HTMLElement} [props.imageElement] - Elemento HTML de la imagen
  * @param {HTMLElement} [props.titleElement] - Elemento HTML del título
  * @param {string} [props.buttonLabel]
  * @param {string} [props.buttonVariant]
@@ -22,7 +22,7 @@ const html = htm.bind(h);
  */
 export default function HeroBanner({
   variant = 'A',
-  image,
+  imageElement,
   titleElement,
   buttonLabel,
   buttonVariant = 'primary',
@@ -37,10 +37,9 @@ export default function HeroBanner({
       class=${`flex items-center min-h-[320px] mb-8 ${isVariantB ? 'flex-row-reverse' : 'flex-row'} ${className}`}
       ...${rest}
     >
-      <img
-        src=${image}
-        alt=${titleElement?.textContent || ''}
-        class="w-1/2 object-cover"
+      <div
+        class="w-1/2"
+        dangerouslySetInnerHTML=${{ __html: imageElement?.outerHTML || '' }}
       />
       <div class=${`w-1/2 p-8 ${isVariantB ? 'text-right' : 'text-left'}`}
       >
