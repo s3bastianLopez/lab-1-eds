@@ -24,7 +24,8 @@ export default function decorate(block) {
     handleClick = function () { window.location.href = buttonHref; };
   }
 
-  // Renderizar HeroBanner usando Preact.render, preservando el bloque original
+  // Limpiar el contenido del bloque antes de renderizar para evitar duplicidad
+  block.innerHTML = '';
   render(
     html`<${HeroBanner}
       image=${image}
