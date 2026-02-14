@@ -1,29 +1,12 @@
-// Bloque Hero para EDS, usando el organismo HeroBanner
-
-import { h, render } from 'preact';
-import htm from 'htm';
-import HeroBanner from '../../uikit/organisms/herobanner/herobanner.js';
-
-const html = htm.bind(h);
-
 /**
- * Decorador de bloque main-hero para EDS con soporte de variantes desde modelo
+ * Decorador de bloque main-hero para EDS con soporte de variantes
+ * Mantiene la estructura DOM original y aplica clases CSS según variantes
  * @param {HTMLElement} block
  */
 export default function decorate(block) {
-  // Extraer datos del DOM del bloque
   const rows = [...block.children];
 
-  // Estructura esperada: imagen, texto, y campos de variantes
-  const image = block.querySelector('img')?.src || '';
-  const title = block.querySelector('h1,h2,h3,h4,h5,h6')?.textContent || '';
-  const description = block.querySelector('p')?.textContent || '';
-  const button = block.querySelector('a,button');
-  const buttonLabel = button?.textContent || '';
-  const buttonHref = button?.href || '';
-
   // Leer variantes desde los campos del modelo (si existen en el DOM)
-  // Buscar elementos con data-aue-prop="variant" o divs con el texto de variante
   let variant = 'A';
   let buttonVariant = 'primary';
 
@@ -35,10 +18,14 @@ export default function decorate(block) {
       // Detectar variante A o B
       if (text === 'a' || text === 'b') {
         variant = text.toUpperCase();
+        // Ocultar la celda que contiene solo la variante
+        cell.style.display = 'none';
       }
       // Detectar variante de botón
       if (text === 'primary' || text === 'outline' || text === 'secondary') {
         buttonVariant = text;
+        // Ocultar la celda que contiene solo la variante de botón
+        cell.style.display = 'none';
       }
     });
   });
@@ -53,24 +40,23 @@ export default function decorate(block) {
     buttonVariant = 'secondary';
   }
 
-  // Definir handler fuera del template para evitar errores de parsing
-  let handleClick;
-  if (buttonHref) {
-    handleClick = function () { window.location.href = buttonHref; };
+  // Aplicar clases CSS según las variantes detectadas
+  block.classList.add(`variant-${variant.toLowerCase()}`);
+  block.classList.add(`button-${buttonVariant}`);
+
+  // Aplicar clases a elementos específicos para el estilo
+  const picture = block.querySelector('picture');
+  if (picture) {
+    picture.classList.add('main-hero-image');
   }
 
-  // Renderizar HeroBanner usando Preact.render
-  block.innerHTML = ''; // Limpiar contenido original
-  render(
-    html`<${HeroBanner}
-      variant=${variant}
-      image=${image}
-      title=${title}
-      description=${description}
-      buttonLabel=${buttonLabel}
-      buttonVariant=${buttonVariant}
-      onButtonClick=${handleClick}
-    />`,
-    block,
-  );
+  const textContent = block.querySelector('[data-aue-prop="text"]');
+  if (textContent) {
+    textContent.classList.add('main-hero-text');
+  }
+
+  const buttons = block.querySelectorAll('a.button');
+  buttons.forEach((btn) => {
+    btn.classList.add(`button-${buttonVariant}`);
+  });
 }
