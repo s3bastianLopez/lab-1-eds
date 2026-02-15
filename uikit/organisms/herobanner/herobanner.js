@@ -44,8 +44,8 @@ export default function HeroBanner({
       </div>
       <div class=${`w-1/2 p-8 ${isVariantB ? 'text-right' : 'text-left'}`}
       >
-        <${OverlayText} htmlElement=${titleElement} className="text-3xl font-bold mb-2" />
-        <${Button} label=${buttonLabel} variant=${buttonVariant} onClick=${onButtonClick} />
+        <${OverlayText} htmlElement=${titleElement} className="text-3xl font-bold mb-4 text-white" />
+        <${Button} label=${buttonLabel} variant=${buttonVariant} onClick=${onButtonClick} className="" />
         ${children}
       </div>
     </div>

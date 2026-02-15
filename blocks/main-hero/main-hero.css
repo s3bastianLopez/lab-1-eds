@@ -16,12 +16,16 @@
   color: var(--background-color);
 }
 
-/* Links en título mantienen color blanco */
+/* Links en título mantienen color blanco sin underline */
 .main-hero h1 a,
-.main-hero h1 a:any-link,
+.main-hero h1 a:any-link {
+  color: var(--background-color);
+  text-decoration: none;
+}
+
 .main-hero h1 a:hover {
   color: var(--background-color);
-  text-decoration: underline;
+  text-decoration: none;
 }
 
 .main-hero picture {

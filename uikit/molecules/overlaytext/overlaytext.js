@@ -20,7 +20,7 @@ export default function OverlayText({
   // Si se pasa un elemento HTML, crear un contenedor y mover el contenido
   if (htmlElement) {
     return html`
-      <div class=${`font-semibold text-xl text-gray-900 mb-2 ${className}`}
+      <div class=${`font-semibold text-xl mb-2 [&_a]:text-white [&_a]:no-underline [&_a:hover]:text-white ${className}`}
         ...${rest}
         dangerouslySetInnerHTML=${{ __html: htmlElement.innerHTML }}
       />
