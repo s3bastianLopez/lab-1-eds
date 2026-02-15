@@ -3,7 +3,7 @@
 import { h } from 'preact';
 import htm from 'htm';
 import OverlayText from '../../molecules/overlaytext/overlaytext.js';
-import Button from '../../atoms/button/button-variant.js';
+import { Button } from '../../atoms/button/button.js';
 
 const html = htm.bind(h);
 

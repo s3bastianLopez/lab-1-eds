@@ -100,8 +100,10 @@
       },
       {
         "component": "select",
+        "valueType": "string",
         "name": "linkType",
         "label": "Type",
+        "value": "",
         "options": [
           {
             "name": "default",

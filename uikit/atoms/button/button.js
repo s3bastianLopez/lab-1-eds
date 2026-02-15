@@ -5,35 +5,52 @@ import htm from 'htm';
 const html = htm.bind(h);
 
 /**
- * Button - Reusable button component
+ * Button - Reusable button component with variant support
  *
  * @param {Object} props - Component properties
- * @param {string} props.type - Button type: 'red' or 'blue' (default: 'red')
- * @param {Function} props.onClick - Click handler
- * @param {string} props.className - Additional CSS classes
- * @param {*} props.children - Button content
- * @param {Object} props.rest - Other button attributes
+ * @param {string} [props.variant] - Button variant: 'primary' | 'secondary' | '' (default)
+ * @param {boolean} [props.disabled] - Disabled state
+ * @param {Function} [props.onClick] - Click handler
+ * @param {string} [props.className] - Additional CSS classes
+ * @param {string} [props.label] - Button text (alternative to children)
+ * @param {*} [props.children] - Button content
+ * @param {Object} [props.rest] - Other button attributes
  */
 export const Button = ({
-  type = 'red',
+  variant = '',
+  disabled = false,
   onClick,
   className = '',
+  label,
   children,
   ...rest
 }) => {
-  // Determine background color based on type
-  const bgColor = type === 'red' ? 'bg-red-500 hover:bg-red-600' : 'bg-blue-500 hover:bg-blue-600';
+  let style = '';
+  switch (variant) {
+    case 'secondary':
+      style = 'bg-transparent text-blue-600 border border-blue-600 hover:bg-blue-50';
+      break;
+    case 'primary':
+      style = 'bg-blue-600 text-white border border-blue-600 hover:bg-blue-700';
+      break;
+    default:
+      // Default style matching AEM default
+      style = 'bg-blue-500 text-white border border-blue-500 hover:bg-blue-600';
+      break;
+  }
 
-  // Combine classes
-  const buttonClasses = `${bgColor} text-white px-4 py-2 rounded transition-colors ${className}`;
+  if (disabled) {
+    style += ' opacity-50 cursor-not-allowed';
+  }
 
   return html`
     <button
-      class=${buttonClasses}
+      class=${`button px-4 py-2 rounded transition-colors ${style} ${className}`}
+      disabled=${disabled}
       onClick=${onClick}
       ...${rest}
     >
-      ${children}
+      ${label || children}
     </button>
   `;
 };
