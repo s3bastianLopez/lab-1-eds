@@ -6,50 +6,38 @@ const html = htm.bind(h);
 
 /**
  * Decorador de bloque main-hero para EDS con soporte de variantes
- * Usa Preact para renderizar HeroBanner y aplica variantes desde el campo "style"
+ * Usa Preact para renderizar HeroBanner
+ * Variantes soportadas a través del nombre del bloque:
+ * - main-hero (text-right): Texto a la derecha (Variante B) con botón secondary
+ * - main-hero (default): Texto a la izquierda (Variante A) con botón primary
  * @param {HTMLElement} block
  */
 export default function decorate(block) {
-  // Buscar el elemento que contiene el valor de linkType
-  const linkTypeElement = block.querySelector('[data-aue-prop="linkType"]');
-
-  // Parsear variantes desde los campos
-  let variant = 'A';
-  let buttonVariant = 'primary';
-
-  if (linkTypeElement) {
-    const linkTypeValue = linkTypeElement.textContent?.trim();
-
-    // Mapear valores de linkType a variantes
-    if (linkTypeValue === 'text-right') {
-      variant = 'B';
-      buttonVariant = 'secondary'; // Text right usa secondary
-      block.classList.add('variant-b');
-      block.classList.add('button-secondary');
-    } else {
-      variant = 'A';
-      buttonVariant = 'primary'; // Text left usa primary
-      block.classList.add('variant-a');
-      block.classList.add('button-primary');
-    }
-
-    // Ocultar el elemento linkType
-    const parentRow = linkTypeElement.closest('.main-hero > div');
-    if (parentRow) {
-      parentRow.remove();
-    }
-  }
-
   // Extraer datos del DOM antes de reemplazar
   const imageElement = block.querySelector('img');
   const titleElement = block.querySelector('[data-aue-prop="title"]');
-  const action = block.querySelector('[data-aue-prop="action"]')?.textContent || '';
-  const buttonHref = action || '#';
+
+  // Obtener datos del botón
+  const buttonLabelElement = block.querySelector('[data-aue-prop="buttonLabel"]');
+  const buttonText = buttonLabelElement?.textContent?.trim() || 'Learn More';
+
+  const buttonUrlElement = block.querySelector('[data-aue-prop="buttonUrl"]');
+  const buttonLink = buttonUrlElement?.textContent?.trim() || '#';
+
+  // Determinar variante desde las clases del bloque
+  // Por ejemplo: main-hero (text-right) se convierte en class="main-hero text-right"
+  const isTextRight = block.classList.contains('text-right');
+  const variant = isTextRight ? 'B' : 'A';
+  const buttonType = isTextRight ? 'secondary' : 'primary';
+
+  // Aplicar clases al bloque
+  block.classList.add(variant === 'B' ? 'variant-b' : 'variant-a');
+  block.classList.add(`button-${buttonType}`);
 
   // Definir handler de click
   const handleClick = function handleButtonClick() {
-    if (buttonHref && buttonHref !== '#') {
-      window.location.href = buttonHref;
+    if (buttonLink && buttonLink !== '#') {
+      window.location.href = buttonLink;
     }
   };
 
@@ -60,10 +48,10 @@ export default function decorate(block) {
   render(
     html`<${HeroBanner}
       variant=${variant}
-      buttonVariant=${buttonVariant}
+      buttonVariant=${buttonType}
       imageElement=${imageElement}
       titleElement=${titleElement}
-      buttonLabel=${action || 'Learn More'}
+      buttonLabel=${buttonText}
       onButtonClick=${handleClick}
     />`,
     block,

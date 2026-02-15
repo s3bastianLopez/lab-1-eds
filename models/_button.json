@@ -20,17 +20,20 @@
       "id": "button",
       "fields": [
         {
-          "component": "aem-content",
+          "component": "text",
+          "valueType": "string",
           "name": "link",
           "label": "Link"
         },
         {
           "component": "text",
+          "valueType": "string",
           "name": "linkText",
           "label": "Text"
         },
         {
           "component": "text",
+          "valueType": "string",
           "name": "linkTitle",
           "label": "Title"
         },

@@ -84,17 +84,20 @@
     "id": "button",
     "fields": [
       {
-        "component": "aem-content",
+        "component": "text",
+        "valueType": "string",
         "name": "link",
         "label": "Link"
       },
       {
         "component": "text",
+        "valueType": "string",
         "name": "linkText",
         "label": "Text"
       },
       {
         "component": "text",
+        "valueType": "string",
         "name": "linkTitle",
         "label": "Title"
       },
@@ -228,13 +231,6 @@
         "multi": false
       },
       {
-        "component": "text",
-        "valueType": "string",
-        "name": "imageAlt",
-        "label": "Image Alt",
-        "value": ""
-      },
-      {
         "component": "richtext",
         "valueType": "string",
         "name": "title",
@@ -242,21 +238,16 @@
         "value": ""
       },
       {
-        "component": "select",
+        "component": "text",
         "valueType": "string",
-        "name": "textPosition",
-        "label": "Text Position",
-        "value": "text-left",
-        "options": [
-          {
-            "name": "Text Left",
-            "value": "text-left"
-          },
-          {
-            "name": "Text Right",
-            "value": "text-right"
-          }
-        ]
+        "name": "buttonLabel",
+        "label": "Button Text"
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "buttonUrl",
+        "label": "Button Link"
       }
     ]
   },
