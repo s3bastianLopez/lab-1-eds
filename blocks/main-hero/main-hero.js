@@ -47,7 +47,7 @@ export default function decorate(block) {
   const buttonHref = action || '#';
 
   // Definir handler de click
-  const handleClick = function () {
+  const handleClick = function handleButtonClick() {
     if (buttonHref && buttonHref !== '#') {
       window.location.href = buttonHref;
     }
