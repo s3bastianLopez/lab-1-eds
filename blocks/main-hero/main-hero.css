@@ -16,6 +16,14 @@
   color: var(--background-color);
 }
 
+/* Links en título mantienen color blanco */
+.main-hero h1 a,
+.main-hero h1 a:any-link,
+.main-hero h1 a:hover {
+  color: var(--background-color);
+  text-decoration: underline;
+}
+
 .main-hero picture {
   position: absolute;
   z-index: -1;
