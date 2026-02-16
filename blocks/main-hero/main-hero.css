@@ -21,6 +21,10 @@
   text-decoration: none;
 }
 
+.main-hero .items-center {
+  max-width: 1200px;
+  margin: 0 auto;
+}
 .main-hero h1 a:hover {
   color: var(--background-color);
   text-decoration: none;
