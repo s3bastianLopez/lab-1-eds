@@ -244,10 +244,21 @@
         "label": "Button Text"
       },
       {
-        "component": "text",
+        "component": "select",
         "valueType": "string",
-        "name": "buttonUrl",
-        "label": "Button Link"
+        "name": "textPosition",
+        "label": "Text Position",
+        "value": "text-left",
+        "options": [
+          {
+            "name": "Text Left",
+            "value": "text-left"
+          },
+          {
+            "name": "Text Right",
+            "value": "text-right"
+          }
+        ]
       }
     ]
   },

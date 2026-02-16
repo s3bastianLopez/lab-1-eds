@@ -21,12 +21,15 @@ export default function decorate(block) {
   const buttonLabelElement = block.querySelector('[data-aue-prop="buttonLabel"]');
   const buttonText = buttonLabelElement?.textContent?.trim() || 'Learn More';
 
-  const buttonUrlElement = block.querySelector('[data-aue-prop="buttonUrl"]');
-  const buttonLink = buttonUrlElement?.textContent?.trim() || '#';
+  // El link del botón se puede configurar como link en el título
+  const buttonLink = '#';
 
-  // Determinar variante desde las clases del bloque
-  // Por ejemplo: main-hero (text-right) se convierte en class="main-hero text-right"
-  const isTextRight = block.classList.contains('text-right');
+  // Obtener posición del texto
+  const textPositionElement = block.querySelector('[data-aue-prop="textPosition"]');
+  const textPosition = textPositionElement?.textContent?.trim() || 'text-left';
+
+  // Determinar variante desde el campo textPosition
+  const isTextRight = textPosition === 'text-right';
   const variant = isTextRight ? 'B' : 'A';
   const buttonType = isTextRight ? 'secondary' : 'primary';
 
