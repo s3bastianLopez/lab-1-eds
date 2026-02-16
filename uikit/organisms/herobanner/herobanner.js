@@ -37,14 +37,14 @@ export default function HeroBanner({
       class=${`flex items-center min-h-[320px] mb-8 ${isVariantB ? 'flex-row-reverse' : 'flex-row'} ${className}`}
       ...${rest}
     >
-      <div>
+      <div class="w-1/2">
         <picture
           dangerouslySetInnerHTML=${{ __html: imageElement?.outerHTML || '' }}
         />
       </div>
-      <div class=${`w-1/2 p-8 ${isVariantB ? 'text-right' : 'text-left'}`}
+      <div class=${`w-1/2 p-8 flex flex-col ${isVariantB ? 'items-end text-right' : 'items-start text-left'}`}
       >
-        <${OverlayText} htmlElement=${titleElement} className="text-3xl font-bold mb-4 text-white" />
+        <${OverlayText} htmlElement=${titleElement} className="text-3xl font-bold mb-4 text-white w-full" />
         <${Button} label=${buttonLabel} variant=${buttonVariant} onClick=${onButtonClick} className="" />
         ${children}
       </div>
