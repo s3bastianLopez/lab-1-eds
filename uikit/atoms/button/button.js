@@ -28,7 +28,7 @@ export const Button = ({
   let style = '';
   switch (variant) {
     case 'secondary':
-      style = 'bg-transparent text-white border-0 underline hover:no-underline';
+      style = '!bg-transparent !text-white !border-0 underline hover:no-underline';
       break;
     case 'primary':
       style = 'bg-blue-600 text-white border border-blue-600 hover:bg-blue-700';
