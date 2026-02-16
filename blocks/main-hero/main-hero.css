@@ -42,10 +42,16 @@
   height: 100%;
 }
 
+/* Variante A: Texto a la izquierda */
+.main-hero.variant-a h1,
+.main-hero.variant-a .main-hero-text {
+  text-align: left !important;
+}
+
 /* Variante B: Texto a la derecha */
 .main-hero.variant-b h1,
 .main-hero.variant-b .main-hero-text {
-  text-align: right;
+  text-align: right !important;
 }
 
 /* Estilos de botones - resetear estilos globales y aplicar los específicos */
